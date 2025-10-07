@@ -1,0 +1,247 @@
+# Default values for k-native.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global:
+  imageRegistry: 172.16.109.25/harbor/projects/3/repositories
+  profile:
+    openshift: false
+
+kubeTally:
+  costApiUrl: http://kubetally-pricing-service:30001
+  enabled: false
+kubeslice:
+  productName: kubeslice
+  ui:
+    image: kubeslice-ui-ent
+    tag: 1.16.0
+    pullPolicy: IfNotPresent
+    service:
+      type: ClusterIP
+    labels:
+      app: kubeslice-ui
+    annotations: {}
+    containerSecurityContext: 
+      runAsUser: 65536
+      runAsGroup: 65536
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: false
+    podSecurityContext: 
+      runAsUser: 65536               # Non-root user
+      runAsGroup: 65536              # Non-root group
+      runAsNonRoot: true             # Ensure the container does not run as root
+      seccompProfile:
+        type: RuntimeDefault
+    tolerations:
+    - operator: "Exists"
+    affinity: {}
+        # nodeAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - weight: 100
+        #       preference:
+        #         matchExpressions:
+        #           - key: "node.kubernetes.io/gpu"
+        #             operator: "DoesNotExist"
+  uiv2:
+    image: kubeslice-ui-v2-ent
+    tag: 1.16.0
+    pullPolicy: IfNotPresent
+    service:
+      type: ClusterIP
+    labels:
+      app: kubeslice-ui-v2
+    annotations: {}
+    containerSecurityContext: 
+      runAsUser: 65536
+      runAsGroup: 65536
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: false
+    podSecurityContext: 
+      runAsUser: 65536               # Non-root user
+      runAsGroup: 65536              # Non-root group
+      runAsNonRoot: true             # Ensure the container does not run as root
+      seccompProfile:
+        type: RuntimeDefault
+    tolerations:
+    - operator: "Exists"
+    affinity: {}
+        # nodeAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - weight: 100
+        #       preference:
+        #         matchExpressions:
+        #           - key: "node.kubernetes.io/gpu"
+        #             operator: "DoesNotExist"
+
+  dashboard:
+    enabled: false
+    pullPolicy: IfNotPresent
+    proxy:
+      image: docker.io/aveshasystems/kubeslice-kong
+      tag: 3.7
+    api:
+      image: docker.io/aveshasystems/kubeslice-dashboard-api
+      tag: 7.5.1
+    auth:
+      image: docker.io/aveshasystems/kubeslice-dashboard-auth
+      tag: 7.5.1
+    scrapper:
+      image: docker.io/aveshasystems/kubeslice-dashboard-metrics-scraper
+      tag: 7.5.0
+    web:
+      image: docker.io/aveshasystems/kubeslice-dashboard-web
+      tag: 7.5.1
+  uiproxy:
+    image: kubeslice-ui-proxy
+    tag: 1.12.0
+    pullPolicy: IfNotPresent
+    service:
+      ## For kind, set this to NodePort, elsewhere use LoadBalancer or NodePort
+      ## Ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
+      ##
+      type: ClusterIP
+      ## if type selected to NodePort then set nodePort value if required
+      # nodePort:
+    labels:
+      app: kubeslice-ui-proxy
+    annotations: {}
+
+    ingress:
+      ## If true, ui‑proxy Ingress will be created
+      enabled: false
+
+      ## Port on the Service to route to
+      servicePort: 443
+
+      ## Ingress class name (e.g. "nginx"), if you’re using a custom ingress controller
+      className: ""
+
+      ## Extra labels to add onto the Ingress object
+      extraLabels: {}
+
+      ## Annotations to add onto the Ingress object
+      annotations: {}
+
+      ## (Optional) Override the service port to route to
+      # servicePort: 8081
+      ## defaults to .Values.kubeslice.uiproxy.service.port
+
+      ## UI‑Proxy Ingress hostnames with paths
+      ## Must be provided if Ingress is enabled
+      hosts:
+        - host: ui.kubeslice.com     # ← replace with your FQDN
+          paths:
+            - path: /             # ← base path
+              pathType: Prefix    # ← Prefix | Exact
+
+      ## Extra paths to prepend to every host (e.g. for redirects)
+      extraPaths: []
+      # - path: /*
+      #   backend:
+      #     serviceName: ssl-redirect
+      #     servicePort: use-annotation
+
+      ## TLS configuration (you must create these Secrets ahead of time)
+      tls: []
+        # - hosts:
+        #     - ui.kubeslice.com
+        #   secretName: uitlssecret
+
+    containerSecurityContext: 
+      runAsUser: 65536
+      runAsGroup: 65536
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: false
+    podSecurityContext: 
+      runAsUser: 65536               # Non-root user
+      runAsGroup: 65536              # Non-root group
+      runAsNonRoot: true             # Ensure the container does not run as root
+      seccompProfile:
+        type: RuntimeDefault
+    tolerations:
+    - operator: "Exists"
+    affinity: {}
+        # nodeAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - weight: 100
+        #       preference:
+        #         matchExpressions:
+        #           - key: "node.kubernetes.io/gpu"
+        #             operator: "DoesNotExist"
+  apigw:
+    image: kubeslice-api-gw-ent
+    tag: 1.21.0
+    pullPolicy: IfNotPresent
+    service:
+      type: ClusterIP
+    labels:
+      app: kubeslice-api-gw
+    annotations: {}
+    containerSecurityContext: 
+      runAsUser: 65536
+      runAsGroup: 65536
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+      readOnlyRootFilesystem: false
+    podSecurityContext: 
+      runAsUser: 65536               # Non-root user
+      runAsGroup: 65536              # Non-root group
+      runAsNonRoot: true             # Ensure the container does not run as root
+      seccompProfile:
+        type: RuntimeDefault
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi
+    tolerations:
+      - operator: "Exists"
+    affinity: {}
+        # nodeAffinity:
+        #   preferredDuringSchedulingIgnoredDuringExecution:
+        #     - weight: 100
+        #       preference:
+        #         matchExpressions:
+        #           - key: "node.kubernetes.io/gpu"
+        #             operator: "DoesNotExist"
+
+  workerinstaller:
+    image: worker-installer
+    tag: 1.5.0
+    pullPolicy: IfNotPresent
+
+  prometheus:
+    url: http://prometheus-service:9090
+
+imagePullSecretsName: "kubeslice-ui-image-pull-secret"
+# leave the below fields empty if secrets are managed externally.
+imagePullSecrets:
+  repository: https://index.docker.io/v1/ ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
+  username:
+  password:
+  email:
+  dockerconfigjson: ## Value to be used if using external secret managers

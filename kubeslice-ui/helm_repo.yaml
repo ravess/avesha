@@ -1,0 +1,12 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: kubeslice-ui
+  namespace: kubeslice-ui-trg
+spec:
+  interval: 5m
+  url: https://172.16.109.25/harbor/projects/3/repositories
+  # certSecretRef:
+  #   name: combined-root-ca
+  # secretRef:
+  #   name: nexus-auth-generic-stg
