@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kubeslice-controller 
-        namespace: kubeslice-controller-trg
+        namespace: avesha-trg
   valuesFrom:
     - kind: ConfigMap
       name: kubeslice-controller-values
