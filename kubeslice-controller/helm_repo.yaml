@@ -6,6 +6,7 @@ metadata:
 spec:
   interval: 5m
   url: https://172.16.101.2/chartrepo/harbor-proxy
+  inseucre: true
   # certSecretRef:
   #   name: combined-root-ca
   # secretRef:
