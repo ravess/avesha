@@ -5,7 +5,7 @@ metadata:
   namespace: avesha-trg
 spec:
   interval: 1m
-  url: https://172.16.101.2/harbor-proxy/
+  url: https://172.16.101.2/chartrepo/harbor-proxy
   # certSecretRef:
   #   name: combined-root-ca
   # secretRef:
