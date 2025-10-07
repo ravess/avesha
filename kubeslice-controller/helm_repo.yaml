@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: kubeslice-controller
+  name: kubeslice/kubeslice-controller
   namespace: avesha-trg
 spec:
   interval: 1m
