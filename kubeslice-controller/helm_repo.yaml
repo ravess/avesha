@@ -2,10 +2,10 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: kubeslice-controller
-  namespace: kubeslice-controller-trg
+  namespace: avesha-trg
 spec:
   interval: 5m
-  url: https://172.16.109.25/harbor/projects/3/repositories
+  url: https://172.16.109.25/kubeslice/
   # certSecretRef:
   #   name: combined-root-ca
   # secretRef:

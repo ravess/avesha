@@ -1,5 +1,5 @@
 operator:
-  image: worker-operator-ent
+  image: 172.16.109.25/kubeslice
   tag: 1.16.0
   pullPolicy: IfNotPresent
   logLevel: INFO
