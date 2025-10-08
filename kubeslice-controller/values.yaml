@@ -67,8 +67,8 @@ kubeslice:
     rbacResourcePrefix: kubeslice-rbac
     # Prefix for project namespaces created by KubeSlice
     projectnsPrefix: kubeslice
-    # Endpoint for the controller (should be specified if needed)
-    endpoint: ""
+    # Endpoint for the controller (should be specified if needed) use kubectl cluster info
+    endpoint: "https://172.16.102.20/dkp/api-server"
     # Image name for the KubeSlice controller
     image: kubeslice-controller-ent
     # Image tag for the KubeSlice controller
@@ -171,7 +171,7 @@ kubeslice:
     # possible license mode - ["auto", "manual"]
     mode: auto
     # please give company-name or user-name as customerName
-    customerName: ""
+    customerName: "stengg"
 
 
 prometheus:
