@@ -7,8 +7,8 @@ spec:
   interval: 1m
   chart: 
     spec:
-      chart: kubeslice-controller
-      version: 1.16.0
+      chart: kubeslice-controller-egs
+      version: 1.15.2
       sourceRef:
         kind: HelmRepository
         name: kubeslice-controller 
