@@ -5,7 +5,8 @@ metadata:
   namespace: avesha-trg
 spec:
   interval: 1m
-  url: https://172.16.101.2/chartrepo/harbor-proxy
+  url: http://172.16.109.168/repository/helm-hosted/
+  insecure: true
   # certSecretRef:
   #   name: combined-root-ca
   # secretRef:

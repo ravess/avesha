@@ -4,7 +4,7 @@
 
 # if you're installing in openshift cluster make this variable true
 global:
-  imageRegistry: 172.16.109.25/harbor/projects/3/repositories
+  imageRegistry: docker.io/aveshasystems
   # Profile settings (e.g., for OpenShift)
   profile:
     openshift: false
@@ -88,7 +88,7 @@ kubeslice:
      # Configuration for MinIO
       minio:
         # Whether to install MinIO
-        install: "false"
+        install: "true"
         # Storage size for MinIO
         storage: 1Gi
         # Username for MinIO
@@ -151,11 +151,11 @@ kubeslice:
     image: gateway-certs-generator
     # Image tag for the gateway certificates generator
     tag: 0.5.0
-  
+
   # Configuration for Prometheus
   prometheus:
     # Whether Prometheus is enabled
-    enabled: false 
+    enabled: true
     # URL for Prometheus service
     url: http://prometheus-service:9090
 
