@@ -2,10 +2,11 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: kubeslice-ui
-  namespace: kubeslice-ui-trg
+  namespace: avesha-trg
 spec:
-  interval: 5m
-  url: https://172.16.109.25/harbor/projects/3/repositories
+  interval: 1m
+  url: http://172.16.109.168:8081/repository/helm-hosted/
+  insecure: true
   # certSecretRef:
   #   name: combined-root-ca
   # secretRef:
