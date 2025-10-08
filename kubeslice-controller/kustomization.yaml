@@ -4,8 +4,8 @@ commonLabels:
   env: trg
   app: kubeslice
 resources:
-  - helm_repo.yaml
-  - helm_release.yaml
+  # - helm_repo.yaml
+  # - helm_release.yaml
 configMapGenerator:
   - name: kubeslice-controller-values
     files:
