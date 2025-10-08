@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: kubeslice-controller
-  namespace: kubeslice-controller
+  namespace: avesha-trg
 spec:
   interval: 1m
   url: http://172.16.109.168:8081/repository/helm-hosted/
