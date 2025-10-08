@@ -7,8 +7,8 @@ spec:
   interval: 1m
   chart: 
     spec:
-      chart: kubeslice-worker
-      version: 1.16.0
+      chart: kubeslice-worker-egs
+      version: 1.15.2
       sourceRef:
         kind: HelmRepository
         name: kubeslice-worker

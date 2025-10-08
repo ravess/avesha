@@ -1,49 +1,57 @@
+global:
+  imageRegistry: http://172.16.109.168:8081/docker-hst
+  profile:
+    openshift: false
+
+
 operator:
-  image: 172.16.109.25/kubeslice
-  tag: 1.16.0
+  image: worker-operator-ent-egs
+  tag: 1.15.2
   pullPolicy: IfNotPresent
   logLevel: INFO
+  env:
+    - name: DCGM_EXPORTER_JOB_NAME
+      value: gpu-metrics   
   labels:
     control-plane: controller-manager
   annotations:
     kubectl.kubernetes.io/default-container: manager
     prometheus.io/port: "8080"
     prometheus.io/scrape: "true"
-  containerSecurityContext: {}
-    # runAsUser: 65536
-    # runAsGroup: 65536
-    # runAsNonRoot: true
-    # seccompProfile:
-    #   type: RuntimeDefault
-    # allowPrivilegeEscalation: false
-    # capabilities:
-    #   drop:
-    #     - ALL
-    # readOnlyRootFilesystem: true
-  podSecurityContext: {}
-    # runAsUser: 65536               # Non-root user
-    # runAsGroup: 65536              # Non-root group
-    # runAsNonRoot: true             # Ensure the container does not run as root
-    # seccompProfile:
-    #   type: RuntimeDefault
+  containerSecurityContext:
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+  podSecurityContext: 
+    runAsUser: 65536               # Non-root user
+    runAsGroup: 65536              # Non-root group
+    runAsNonRoot: true             # Ensure the container does not run as root
+    seccompProfile:
+      type: RuntimeDefault
   resources:
     limits:
       cpu: 500m
-      memory: 512Mi
+      memory: 128Mi
     requests:
       cpu: 10m
       memory: 64Mi
   tolerations:
     - operator: "Exists"
   affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-        - matchExpressions:
-          - key: kubeslice.io/node-type
-            operator: In
-            values:
-            - gateway
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: "node.kubernetes.io/gpu"
+                    operator: "DoesNotExist"
   excludeNamespaces:
   - "kube-system"
   - "default"
@@ -78,7 +86,7 @@ routerSidecar:
 
 gateway:
   image: gw-sidecar
-  tag: 1.0.4
+  tag: 1.0.5
   pullPolicy: IfNotPresent
   logLevel: INFO
 
@@ -94,6 +102,16 @@ openvpn:
   client:
     image: openvpn-client.alpine
     tag: 1.0.4 
+    pullPolicy: IfNotPresent
+
+wireguard:
+  server:
+    image: wireguard-server.alpine
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+  client:
+    image: wireguard-client.alpine
+    tag: 1.0.0
     pullPolicy: IfNotPresent
 
 dns:
@@ -161,20 +179,150 @@ istio:
     image: proxyv2
     tag: 1.16.1
 
+aiops:
+  image: kube-aiops-operator
+  tag: 1.15.1
+  pullPolicy: IfNotPresent
+  logLevel: INFO
+  labels:
+    control-plane: aiops-controller-manager
+  annotations:
+    kubectl.kubernetes.io/default-container: manager
+    prometheus.io/port: "8080"
+    prometheus.io/scrape: "true"
+  resources:
+    limits:
+      cpu: 500m
+      memory: 128Mi
+    requests:
+      cpu: 5m
+      memory: 64Mi
+  containerSecurityContext:
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+  podSecurityContext: 
+    runAsUser: 65536               # Non-root user
+    runAsGroup: 65536              # Non-root group
+    runAsNonRoot: true             # Ensure the container does not run as root
+    seccompProfile:
+      type: RuntimeDefault
+  tolerations:
+    - operator: "Exists"
+  affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: "node.kubernetes.io/gpu"
+                    operator: "DoesNotExist"
+
+egsAgent:
+  image: egs-agent
+  tag: 1.0.1
+  pullPolicy: IfNotPresent
+  logLevel: INFO
+  secretName: egs-agent-access
+  agentSecret:
+    endpoint: ""
+    key: ""
+  labels:
+    control-plane: egs-agent
+  annotations: {}
+  containerSecurityContext:
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+  podSecurityContext: 
+    runAsUser: 65536               # Non-root user
+    runAsGroup: 65536              # Non-root group
+    runAsNonRoot: true             # Ensure the container does not run as root
+    seccompProfile:
+      type: RuntimeDefault
+  resources:
+    limits:
+      cpu: 500m
+      memory: 128Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
+  tolerations:
+    - operator: "Exists"
+  affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: "node.kubernetes.io/gpu"
+                    operator: "DoesNotExist"
+
+egs:
+  prometheusEndpoint: ""
+  grafanaDashboardBaseUrl: ""
+
 workerInstaller:
   image: worker-installer
-  tag: 1.5.0
+  tag: 1.8.0
 
 jaeger:
   enabled: false
-  
+
 events:
   disabled: false
+
+kserve:
+  enabled: true
+  # KServe chart options
+  kserve:
+    controller:
+      gateway:
+        domain: kubeslice.com
+        ingressGateway:
+          className: "nginx"
 
 metrics:
   insecure: false
   metricResolution: "15s"
   imagePullPolicy: IfNotPresent
+
+rbacproxy:
+  # Image name for the RBAC proxy
+  image: kubebuilder-kube-rbac-proxy
+  # Image tag for the RBAC proxy
+  tag: 0.18.2
+  containerSecurityContext:
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+
+alpine:
+  # Image name for the alpine
+  image: alpine-k8s
+  # Image tag for the alpine
+  tag: 1.0.1
 
 imagePullSecretsName: "kubeslice-image-pull-secret"
 # leave the below fields empty if secrets are managed externally.
@@ -186,11 +334,6 @@ imagePullSecrets:
   dockerconfigjson: ## Value to be used if using external secret managers
 
 controllerNamespace: kubeslice-controller
-
-global:
-  imageRegistry: docker.io/aveshasystems
-  profile:
-    openshift: false
 
 # enable/disable network component installation
 kubesliceNetworking:
