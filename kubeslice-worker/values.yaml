@@ -1,5 +1,5 @@
 global:
-  imageRegistry: http://172.16.109.168:8081/docker-hst
+  imageRegistry: docker-host.172.16.109.168:8082
   profile:
     openshift: false
 
