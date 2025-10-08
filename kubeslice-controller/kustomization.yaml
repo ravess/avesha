@@ -4,7 +4,8 @@ commonLabels:
   env: trg
   app: kubeslice
 resources:
-  # - kubeslice-controller-namespace.yaml
+  - license.yaml
+  - kubeslice-controller-namespace.yaml
   - helm_repo.yaml
   - helm_release.yaml
 configMapGenerator:
