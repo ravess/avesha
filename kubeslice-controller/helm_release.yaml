@@ -13,6 +13,8 @@ spec:
         kind: HelmRepository
         name: kubeslice-controller 
         namespace: avesha-trg
+  install:
+    timeout: 15m
   valuesFrom:
     - kind: ConfigMap
       name: kubeslice-controller-values
