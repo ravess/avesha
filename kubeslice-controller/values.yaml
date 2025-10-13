@@ -80,7 +80,7 @@ kubeslice:
     # Prefix for project namespaces created by KubeSlice
     projectnsPrefix: kubeslice
     # Endpoint for the controller (should be specified if needed)
-    endpoint: ""
+    endpoint: https://kubeslice-controller-manager.kubeslice-controller.svc.cluster.local:443
     # Image name for the KubeSlice controller
     image: kubeslice-controller-ent-egs
     # Image tag for the KubeSlice controller
