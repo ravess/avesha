@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates. 
 #http://172.16.109.168:8082/egs
 global:
-  imageRegistry: "http://172.16.109.168:8082/egs"
+  imageRegistry: "http://172.16.109.168:8082/docker-host/egs"
   # user can configure labels or annotations that EGS Controller namespaces should have
   namespaceConfig:
     labels: {}
