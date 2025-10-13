@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates. 
 global:
-  imageRegistry: 172.16.109.168:8082/egs/
+  imageRegistry: 172.16.109.168:8082/egs
   # user can configure labels or annotations that EGS Controller namespaces should have
   namespaceConfig:
     labels: {}
