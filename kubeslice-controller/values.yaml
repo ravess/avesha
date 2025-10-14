@@ -24,7 +24,7 @@ global:
     postgresUser:                        # Optional, can be specified here or retrieved from the secret
     postgresPassword:                     # Optional, can be specified here or retrieved from the secret
     postgresDB:                          # Optional, can be specified here or retrieved from the secret
-    postgresSslmode: require            # optional, default: require other values: disable
+    postgresSslmode: disable           # optional, default: require other values: disable
 
     # Service type for price Service Type
     priceServiceType: ClusterIP
