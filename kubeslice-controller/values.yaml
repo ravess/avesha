@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates. 
 #http://172.16.109.168:8082/egs
 global:
-  imageRegistry: 172.16.109.168:8082/egs
+  imageRegistry: ""
   # user can configure labels or annotations that EGS Controller namespaces should have
   namespaceConfig:
     labels: {}
@@ -48,7 +48,7 @@ kubeslice:
   # Configuration for the RBAC proxy
   rbacproxy:
     # Image name for the RBAC proxy
-    image: kubebuilder-kube-rbac-proxy
+    image: 172.16.109.168:8082/egs/kubebuilder-kube-rbac-proxy
     # Image tag for the RBAC proxy
     tag: 0.18.2
     containerSecurityContext:
@@ -66,7 +66,7 @@ kubeslice:
   # Configuration for the OpenVPN job
   ovpnJob:
     # Image name for the gateway certificates generator
-    image: gateway-certs-generator
+    image: 172.16.109.168:8082/egs/gateway-certs-generator
     # Image tag for the gateway certificates generator
     tag: 0.8.0
 
@@ -83,7 +83,7 @@ kubeslice:
     # Endpoint for the controller (should be specified if needed)
     endpoint: https://kubeslice-controller-manager.kubeslice-controller.svc.cluster.local:443
     # Image name for the KubeSlice controller
-    image: kubeslice-controller-ent-egs
+    image: 172.16.109.168:8082/egs/kubeslice-controller-ent-egs
     # Image tag for the KubeSlice controller
     tag: 1.15.2
     # Image pull policy for the KubeSlice controller
@@ -142,7 +142,7 @@ kubeslice:
 egs:
   gprManager:
     # Image name for the gpr-manager
-    image: gpr-manager
+    image: 172.16.109.168:8082/egs/gpr-manager
     # Image tag for the gpr-manager
     tag: 1.14.1
     imagePullPolicy: IfNotPresent
@@ -193,7 +193,7 @@ egs:
 
   queueManager:
     # Image name for the queue-manager
-    image: queue-manager
+    image: 172.16.109.168:8082/egs/queue-manager
     # Image tag for the queue-manager
     tag: 1.13.1
     imagePullPolicy: IfNotPresent
@@ -236,7 +236,7 @@ egs:
 
   inventory:
     # Image name for inventory-manager
-    image: inventory-manager
+    image: 172.16.109.168:8082/egs/inventory-manager
     # Image tag for inventory-manager
     tag: 1.14.1
     imagePullPolicy: IfNotPresent
