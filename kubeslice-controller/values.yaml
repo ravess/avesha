@@ -88,6 +88,8 @@ kubeslice:
     tag: 1.15.2
     # Image pull policy for the KubeSlice controller
     pullPolicy: IfNotPresent
+    imagePullSecrets:
+      -  name: nexus-cred
     # Configuration for kubeTally, which handles chargeback and metrics
     kubeTally:
       # Interval for cleaning up metrics when a worker cluster stops communicating
