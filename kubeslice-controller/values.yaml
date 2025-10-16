@@ -283,7 +283,7 @@ egs:
                   - key: "node.kubernetes.io/gpu"
                     operator: "DoesNotExist"                    
 
-imagePullSecretsName: ""
+imagePullSecretsName: "registry-ca"
 # leave the below fields empty if secrets are managed externally.
 imagePullSecrets: {}
   # repository: ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
