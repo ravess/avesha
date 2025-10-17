@@ -5,10 +5,10 @@ commonLabels:
   app: kubeslice
 resources:
   - license.yaml
-  # - kubeslice-controller-namespace.yaml
-  # - helm_repo.yaml
-  # - helm_release.yaml
-  # - nexus-registry-secret.yaml
+  - kubeslice-controller-namespace.yaml
+  - helm_repo.yaml
+  - helm_release.yaml
+  - nexus-registry-secret.yaml
 configMapGenerator:
   - name: kubeslice-controller-values
     files:
