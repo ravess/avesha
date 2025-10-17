@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates. 
 #http://172.16.109.168:8082/egs
 global:
-  imageRegistry: 172.16.109.168/repository/docker-host/egs
+  imageRegistry: docker-host.172.16.109.168/egs
   # user can configure labels or annotations that EGS Controller namespaces should have
   namespaceConfig:
     labels: {}
@@ -283,7 +283,7 @@ egs:
                   - key: "node.kubernetes.io/gpu"
                     operator: "DoesNotExist"                    
 
-imagePullSecretsName: "registry-ca"
+imagePullSecretsName: "nexus-registry-secret"
 # leave the below fields empty if secrets are managed externally.
 imagePullSecrets: {}
   # repository: ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
