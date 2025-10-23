@@ -18,23 +18,23 @@ operator:
     kubectl.kubernetes.io/default-container: manager
     prometheus.io/port: "8080"
     prometheus.io/scrape: "true"
-  containerSecurityContext: {}
-    # runAsUser: 65536
-    # runAsGroup: 65536
-    # runAsNonRoot: true
-    # seccompProfile:
-    #   type: RuntimeDefault
-    # allowPrivilegeEscalation: false
-    # capabilities:
-    #   drop:
-    #     - ALL
-    # readOnlyRootFilesystem: true
-  podSecurityContext: {}
-    # runAsUser: 65536               # Non-root user
-    # runAsGroup: 65536              # Non-root group
-    # runAsNonRoot: true             # Ensure the container does not run as root
-    # seccompProfile:
-    #   type: RuntimeDefault
+  containerSecurityContext:
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+  podSecurityContext: 
+    runAsUser: 65536               # Non-root user
+    runAsGroup: 65536              # Non-root group
+    runAsNonRoot: true             # Ensure the container does not run as root
+    seccompProfile:
+      type: RuntimeDefault
   resources:
     limits:
       cpu: 500m
@@ -123,23 +123,23 @@ dns:
   labels:
     app: kubeslice-dns
   annotations: {}
-  containerSecurityContext: {}
-    # runAsUser: 65536
-    # runAsGroup: 65536
-    # runAsNonRoot: true
-    # seccompProfile:
-    #   type: RuntimeDefault
-    # allowPrivilegeEscalation: false
-    # capabilities:
-    #   drop:
-    #     - ALL
-    # readOnlyRootFilesystem: true
-  podSecurityContext: {}
-    # runAsUser: 65536               # Non-root user
-    # runAsGroup: 65536              # Non-root group
-    # runAsNonRoot: true             # Ensure the container does not run as root
-    # seccompProfile:
-    #   type: RuntimeDefault
+  containerSecurityContext: 
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+  podSecurityContext: 
+    runAsUser: 65536               # Non-root user
+    runAsGroup: 65536              # Non-root group
+    runAsNonRoot: true             # Ensure the container does not run as root
+    seccompProfile:
+      type: RuntimeDefault
   resources:
     requests:
       cpu: 10m
