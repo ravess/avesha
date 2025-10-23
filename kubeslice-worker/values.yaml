@@ -1,5 +1,5 @@
 global:
-  imageRegistry: harbor.saas1.smart-scaler.io/avesha/aveshasystems
+  imageRegistry: 172.16.109.168:8082/egs
   profile:
     openshift: false
 

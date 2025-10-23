@@ -1,0 +1,81 @@
+apiVersion: v1
+items:
+- apiVersion: controlplane.cluster.x-k8s.io/v1beta1
+  kind: KubeadmControlPlaneTemplate
+  metadata:
+    annotations:
+      caren.nutanix.com/version: v0.27.4
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"controlplane.cluster.x-k8s.io/v1beta1","kind":"KubeadmControlPlaneTemplate","metadata":{"annotations":{"caren.nutanix.com/version":"v0.27.4"},"creationTimestamp":"2025-09-10T07:34:47Z","generation":1,"labels":{"cluster.x-k8s.io/provider":"nutanix"},"name":"nkp-nutanix-v2.14.0","namespace":"default","ownerReferences":[{"apiVersion":"cluster.x-k8s.io/v1beta1","kind":"ClusterClass","name":"nkp-nutanix-v2.14.0","uid":"c0b6864e-81c6-4598-a080-46f9117126ed"}],"resourceVersion":"6078","uid":"a40dac47-d948-4961-b8c7-5f7d493b1bc4"},"spec":{"template":{"metadata":{},"spec":{"kubeadmConfigSpec":{"clusterConfiguration":{"apiServer":{"extraArgs":{"cloud-provider":"external","tls-cipher-suites":"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"}},"controllerManager":{"extraArgs":{"cloud-provider":"external","tls-cipher-suites":"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"}},"dns":{},"etcd":{},"networking":{},"scheduler":{"extraArgs":{"tls-cipher-suites":"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"}}},"format":"cloud-config","initConfiguration":{"localAPIEndpoint":{},"nodeRegistration":{"imagePullPolicy":"IfNotPresent","kubeletExtraArgs":{"cloud-provider":"external","eviction-hard":"nodefs.available\u003c10%,nodefs.inodesFree\u003c5%,imagefs.available\u003c15%,memory.available\u003c100Mi,imagefs.inodesFree\u003c10%","tls-cipher-suites":"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"}}},"joinConfiguration":{"discovery":{},"nodeRegistration":{"imagePullPolicy":"IfNotPresent","kubeletExtraArgs":{"cloud-provider":"external","eviction-hard":"nodefs.available\u003c10%,nodefs.inodesFree\u003c5%,imagefs.available\u003c15%,memory.available\u003c100Mi,imagefs.inodesFree\u003c10%","tls-cipher-suites":"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"}}},"postKubeadmCommands":["echo export KUBECONFIG=/etc/kubernetes/admin.conf \u003e\u003e /root/.bashrc","echo \"after kubeadm call\" \u003e /var/log/postkubeadm.log"],"preKubeadmCommands":["echo \"before kubeadm call\" \u003e /var/log/prekubeadm.log","hostnamectl set-hostname \"{{ ds.meta_data.hostname }}\"","echo \"::1         ipv6-localhost ipv6-loopback\" \u003e/etc/hosts","echo \"127.0.0.1   localhost\" \u003e\u003e/etc/hosts","echo \"127.0.0.1   {{ ds.meta_data.hostname }}\" \u003e\u003e /etc/hosts"],"useExperimentalRetryJoin":true,"verbosity":10},"rolloutStrategy":{"rollingUpdate":{"maxSurge":1},"type":"RollingUpdate"}}}}}
+    creationTimestamp: "2025-09-10T07:34:47Z"
+    generation: 1
+    labels:
+      cluster.x-k8s.io/provider: nutanix
+    name: nkp-nutanix-v2.14.0
+    namespace: default
+    ownerReferences:
+    - apiVersion: cluster.x-k8s.io/v1beta1
+      kind: ClusterClass
+      name: nkp-nutanix-v2.14.0
+      uid: c0b6864e-81c6-4598-a080-46f9117126ed
+    resourceVersion: "97884193"
+    uid: a40dac47-d948-4961-b8c7-5f7d493b1bc4
+  spec:
+    template:
+      metadata: {}
+      spec:
+        kubeadmConfigSpec:
+          clusterConfiguration:
+            apiServer:
+              extraArgs:
+                cloud-provider: external
+                tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+            controllerManager:
+              extraArgs:
+                cloud-provider: external
+                tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+            dns: {}
+            etcd: {}
+            networking: {}
+            scheduler:
+              extraArgs:
+                tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+          format: cloud-config
+          initConfiguration:
+            localAPIEndpoint: {}
+            nodeRegistration:
+              imagePullPolicy: IfNotPresent
+              kubeletExtraArgs:
+                cloud-provider: external
+                eviction-hard: nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<15%,memory.available<100Mi,imagefs.inodesFree<10%
+                tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+          joinConfiguration:
+            discovery: {}
+            nodeRegistration:
+              imagePullPolicy: IfNotPresent
+              kubeletExtraArgs:
+                cloud-provider: external
+                eviction-hard: nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<15%,memory.available<100Mi,imagefs.inodesFree<10%
+                tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+          postKubeadmCommands:
+          - echo export KUBECONFIG=/etc/kubernetes/admin.conf >> /root/.bashrc
+          - echo "after kubeadm call" > /var/log/postkubeadm.log
+          preKubeadmCommands:
+          - echo "before kubeadm call" > /var/log/prekubeadm.log
+          - hostnamectl set-hostname "{{ ds.meta_data.hostname }}"
+          - echo "::1         ipv6-localhost ipv6-loopback" >/etc/hosts
+          - echo "127.0.0.1   localhost" >>/etc/hosts
+          - echo "127.0.0.1   {{ ds.meta_data.hostname }}" >> /etc/hosts
+          containerdConfigPatches:
+          - |
+            [plugins."io.containerd.grpc.v1.cri".registry.mirrors."172.16.109.168:8082"]
+              endpoint = ["http://172.16.109.168:8082"]
+          useExperimentalRetryJoin: true
+          verbosity: 10
+        rolloutStrategy:
+          rollingUpdate:
+            maxSurge: 1
+          type: RollingUpdate
+kind: List
+metadata:
+  resourceVersion: ""

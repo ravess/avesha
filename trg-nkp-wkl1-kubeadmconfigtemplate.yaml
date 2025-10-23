@@ -1,0 +1,46 @@
+apiVersion: bootstrap.cluster.x-k8s.io/v1beta1
+kind: KubeadmConfigTemplate
+metadata:
+  annotations:
+    caren.nutanix.com/version: v0.27.4
+  creationTimestamp: "2025-09-10T09:29:06Z"
+  generation: 1
+  name: nkp-nutanix-worker-v2.14.0
+  namespace: wkl-001-2kzzm-lsd27
+  ownerReferences:
+  - apiVersion: cluster.x-k8s.io/v1beta1
+    kind: ClusterClass
+    name: nkp-nutanix-v2.14.0
+    uid: 03c776cf-03eb-4914-9ed6-2d0e0555f400
+  resourceVersion: "181021"
+  uid: 781cda68-4e75-4fe8-b4d7-9ad4e8ed5096
+spec:
+  template:
+    metadata: {}
+    spec:
+      format: cloud-config
+      joinConfiguration:
+        discovery: {}
+        nodeRegistration:
+          imagePullPolicy: IfNotPresent
+          kubeletExtraArgs:
+            cloud-provider: external
+            eviction-hard: nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<15%,memory.available<100Mi,imagefs.inodesFree<10%
+            tls-cipher-suites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+      containerdConfigPatches:
+      - |-
+        [plugins."io.containerd.grpc.v1.cri".registry]
+          [plugins."io.containerd.grpc.v1.cri".registry.mirrors."harbor.ste.training"]
+            endpoint = ["https://harbor.ste.training/library"]
+          [plugins."io.containerd.grpc.v1.cri".registry.mirrors."172.16.109.168:8082"]
+            endpoint = ["http://172.16.109.168:8082"]
+          [plugins."io.containerd.grpc.v1.cri".registry.configs."172.16.109.168:8082".tls]
+            insecure_skip_verify = true
+      postKubeadmCommands:
+      - echo "after kubeadm call" > /var/log/postkubeadm.log
+      preKubeadmCommands:
+      - echo "before kubeadm call" > /var/log/prekubeadm.log
+      - hostnamectl set-hostname "{{ ds.meta_data.hostname }}"
+      - mkdir -p /etc/containerd/certs.d/172.16.109.168:8082
+      - echo '{"auths":{"172.16.109.168:8082":{"username":"admin","password":"P@ssw0rd"}}}' > /etc/containerd/certs.d/172.16.109.168:8082/auth.json
+      verbosity: 10
