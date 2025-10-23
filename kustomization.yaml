@@ -3,4 +3,4 @@ kind: Kustomization
 resources: 
   - kubeslice-controller
   - kubeslice-ui
-  # - kubeslice-worker
+  - kubeslice-worker
