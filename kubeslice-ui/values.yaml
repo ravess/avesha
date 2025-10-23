@@ -104,7 +104,7 @@ kubeslice:
                   - key: "node.kubernetes.io/gpu"
                     operator: "DoesNotExist"
   dashboard:
-    enabled: true
+    enabled: false
     pullPolicy: IfNotPresent
     proxy:
       image: kubeslice-kong
