@@ -61,7 +61,7 @@ operator:
   - "kube-public"
   - "istio-system"
 
-controllerSecretName: kubeslice-hub #default name used if not specify any name
+controllerSecretName: kubeslice-controller-secret #default name used if not specify any name
 ## Base64 encoded secret values from controller cluster
 controllerSecret:
   namespace:
