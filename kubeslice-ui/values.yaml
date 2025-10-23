@@ -133,7 +133,7 @@ kubeslice:
       ## if type selected to NodePort then set nodePort value if required
       # nodePort: 30031
       port: 443
-      targetPort: 443
+      targetPort: 8443
     labels:
       app: kubeslice-ui-proxy
     annotations: {}
