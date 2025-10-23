@@ -166,7 +166,7 @@ kubeslice:
       hosts:
         - host: ui.kubeslice.trg    # ← replace with your FQDN
           paths:
-            - path: /             # ← base path
+            - path: /egs             # ← base path
               pathType: Prefix    # ← Prefix | Exact
 
       ## Extra paths to prepend to every host (e.g. for redirects)
