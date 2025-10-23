@@ -1,3 +1,4 @@
+
 global:
   imageRegistry: 172.16.109.168:8082/egs
   profile:
@@ -61,18 +62,18 @@ operator:
   - "kube-public"
   - "istio-system"
 
-controllerSecretName: kubeworker-secret #default name used if not specify any name
+controllerSecretName: kubeslice-hub #default name used if not specify any name
 ## Base64 encoded secret values from controller cluster
 controllerSecret:
-  namespace: a3ViZXNsaWNlLWF2ZXNoYQ==
-  endpoint: aHR0cHM6Ly8xNzIuMTYuMTAyLjIwL2RrcC9hcGktc2VydmVyOjY0NDM
-  ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM2akNDQWRLZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJMU1Ea3hNREE1TWprd04xb1hEVE0xTURrd09EQTVNelF3TjFvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTGJ2CnB3SmFmVWtIWWFZSko5M3ZFbEhKVGRxWmppT3VvbU05KzY3K1ZlYkxzM3YrUjdOS3RSWHpndkcvYkp5NW9vQWIKTm5tdmtoSnhtZVQ3T0JwLytCTG9zWC9IS1RLdXloZ3dubkJaU1J3MTRqcTZPVUNBZ1RoWG1VdzY1M1kzekZWcQpMaVNlOUd2cytCVVRsTE5uMnpJMWJGSkdFTFhnK3pBMlZ0N2hqZE51d3NXOVJSTVV3T3pTa0FNSlNFeVVPWkkvCkRFb3ZmL3RvNGY2Zk4yWGpMS1VsK2F6dktiU3EyYWRnc3FjVTBPbnNnRGJYYUd0TFR5MThPR05KZXllcXZsVmQKcy9NZE5CcjA5OCtUU3dlcDQ3cEZoeTFKREVJZHlncGpqbFlhRTV6R0c1aTNjSEkvK3J4bGtVNjBsRlFRL1QrRgptZEFjOGtHTEhuWDJCUWo5V0FNQ0F3RUFBYU5GTUVNd0RnWURWUjBQQVFIL0JBUURBZ0trTUJJR0ExVWRFd0VCCi93UUlNQVlCQWY4Q0FRQXdIUVlEVlIwT0JCWUVGSFJnYkE3ZWlIVmFheTBVQU1EN3R4Tkt5dW52TUEwR0NTcUcKU0liM0RRRUJDd1VBQTRJQkFRQnpOQnBTRkVJTU5KMnZlL2VRSU13RjJiNUtuckpGa005ZmtNSWFUWDBCbEJxMQpBSzR2dHI5N1NpRUs4T3dSYU1xNjVSSzFqZXlwcVNIL002VXhnNmtZUGltaERHU3B5ZUhGcmtyNU5jZDhicXMvCnVVdjlIbC9GbGc0OFNYWENIVmRNQ1I5cXVqMWo4UU1hQmNHWEhSUUttKzJURVhjcUJaSFZXSVBBbnNDeEEva3QKZ09uQWs0OVN6Y2FKaUJJZHpyWEttN0RCazY3UzMrWDF6TVNwaFNmNngreHA0bGJRR1JDU1V3eXBPYXBLUTc2MwpWZWRyc3R4c2dZeWVEQkpHa01WNXQ2OGtBS0o2T29mMEJZOWZjZlp4S0taZ2ZVd0doT3JjT1lsVDUzQkphYTN6CndkdHNVZ2p0TXhHZ2k5ZlhNbkFYTGVmNDlkdWErb0NXczdZQUNPcXcKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
-  token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNkluVlBVVzgwYm14NFdteHhXbmN3WkdFd2NYSmliV1pJZFVvMFdGaFRVMWszZVRWTllTMXViRVJDZGswaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUpyZFdKbGMyeHBZMlV0WVhabGMyaGhJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbXQxWW1WemJHbGpaUzF5WW1GakxYZHZjbXRsY2kxMGNtY3RibXR3TFhkcmJDMHdNREVpTENKcmRXSmxjbTVsZEdWekxtbHZMM05sY25acFkyVmhZMk52ZFc1MEwzTmxjblpwWTJVdFlXTmpiM1Z1ZEM1dVlXMWxJam9pYTNWaVpYTnNhV05sTFhKaVlXTXRkMjl5YTJWeUxYUnlaeTF1YTNBdGQydHNMVEF3TVNJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZ5ZG1salpTMWhZMk52ZFc1MExuVnBaQ0k2SWpCaFl6SmxOREJrTFRneU1ERXROREEwWVMwNU1HRTFMVFUzTlRNME1qVTBZelF6TkNJc0luTjFZaUk2SW5ONWMzUmxiVHB6WlhKMmFXTmxZV05qYjNWdWREcHJkV0psYzJ4cFkyVXRZWFpsYzJoaE9tdDFZbVZ6YkdsalpTMXlZbUZqTFhkdmNtdGxjaTEwY21jdGJtdHdMWGRyYkMwd01ERWlmUS5xMXpaMGg1OENnQ3lDNFFGVzc5Uk9YSk5tVmZUbUY4TjdUWjUxRzBDRHp4bGo2ejEzT3ZHQzllYk1adnpZQ0ZVLWxUaWlmV0VFcU9wc3A2azgwRE13YWhpVTRHcHhzWXZBSzVKZ3g4Z0xReHBkTEp6MTJxeVQxSTMyby1nbXhGNWRJYzFEUWdGLWRxRlk2X001cUZFSXE5ZkMzcnlpaTlqeDhWUlhfUUFFelk4X2ZzYzRtclM2WVRMbWJaNkNacExDVWQ2OFdhQmhfTXZFRzdkMFdEMTR3Z2xJaWllaHRDTEhnekt5UUgzODIwNGx2Vi1PZkI0RlJINU9OM3F3ZWZOakRFcEZrQnZXVk9fbmpDX1RDc2hNbEdtRXZvWFpRbDdsUWN5bTB2YXRPb2pOUmZkR21CUnRuS0pFYlNtT3RoY3dDSGZvZlktb2dvR1JveDFwZzZReXc=
+  namespace:
+  endpoint:
+  ca.crt:
+  token:
 
 cluster:
-  name: trg-nkp-wkl-001
+  name:
   nodeIp: # This field is deprecated. You can set nodeIPs through cluster spec.
-  endpoint: https://172.16.102.20/dkp/api-server:6443
+  endpoint:
 
 router:
   image: cmd-nse-vl3
@@ -123,17 +124,17 @@ dns:
   labels:
     app: kubeslice-dns
   annotations: {}
-  containerSecurityContext: 
-    runAsUser: 65536
-    runAsGroup: 65536
-    runAsNonRoot: true
-    seccompProfile:
-      type: RuntimeDefault
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - ALL
-    readOnlyRootFilesystem: true
+  containerSecurityContext: {}
+    # runAsUser: 65536
+    # runAsGroup: 65536
+    # runAsNonRoot: true
+    # seccompProfile:
+    #   type: RuntimeDefault
+    # allowPrivilegeEscalation: false
+    # capabilities:
+    #   drop:
+    #     - ALL
+    # readOnlyRootFilesystem: true
   podSecurityContext: {}
     # runAsUser: 65536               # Non-root user
     # runAsGroup: 65536              # Non-root group
@@ -232,8 +233,8 @@ egsAgent:
   logLevel: INFO
   secretName: egs-agent-access
   agentSecret:
-    endpoint: https://ui.kubeslice.trg
-    key: eyJhbGciOiJSUzI1NiIsImtpZCI6InVPUW80bmx4WmxxWncwZGEwcXJibWZIdUo0WFhTU1k3eTVNYS1ubERCdk0ifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlc2xpY2UtYXZlc2hhIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6Imt1YmVzbGljZS1yYmFjLXJ3LWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6Imt1YmVzbGljZS1yYmFjLXJ3LWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYjE1NjExZTgtZTBjNS00MTlkLTlhZGYtMTQzOWIxZTVhYWFlIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmVzbGljZS1hdmVzaGE6a3ViZXNsaWNlLXJiYWMtcnctYWRtaW4ifQ.ZztxSIYliY7hpy_eYz9nPIiFzX4w7Moldce6sl3NAKtJJBnuA_Y00nzi5x5FvOvRqMUfu1fxpnhUTA3LnPAefR7smWl4R__8ZzzuDH8HvAYQBmJzwlOVJcMsoF4WjTUlzy-qY8_PzNyuLGBOHnuc1YuowrwiNamoqkPnJb3veRibwTfFau5vOf7rPuR3LqIl_NLR_Li_EJKEDJkNB8_NCeKQqINpDHdGcgMCy45IcJWOwSjH3OcoSrgtVThXUEe7QnQwLRN7jLDbvq3eWXVPZFEU143FqlsvE3uC6CBjyeLOmL_5gCQHMGZgQbiTBigPa3wuLFdKD2e2g5_R0MQHmQ
+    endpoint: ""
+    key: ""
   labels:
     control-plane: egs-agent
   annotations: {}
@@ -274,7 +275,7 @@ egsAgent:
 
 egs:
   prometheusEndpoint: ""
-  grafanaDashboardBaseUrl: http://<grafana-lb>/d/Oxed_c6Wz
+  grafanaDashboardBaseUrl: ""
 
 workerInstaller:
   image: worker-installer
@@ -287,12 +288,12 @@ events:
   disabled: false
 
 kserve:
-  enabled: false
+  enabled: true
   # KServe chart options
   kserve:
     controller:
       gateway:
-        domain: ""
+        domain: kubeslice.com
         ingressGateway:
           className: "nginx"
 
