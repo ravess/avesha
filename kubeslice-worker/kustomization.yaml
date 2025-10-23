@@ -4,9 +4,9 @@ commonLabels:
   env: trg
   app: kubeslice
 resources:
-  - kubeslice-worker-namespace.yaml
-  - helm_repo.yaml
-  - helm_release.yaml
+  # - kubeslice-worker-namespace.yaml
+  # - helm_repo.yaml
+  # - helm_release.yaml
   # - kubeslice-controller-secret.yaml
   - nexus-registry-secret.yaml
 configMapGenerator:
