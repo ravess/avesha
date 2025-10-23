@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  # A name for the Certificate object itself
+  name: kubeslice-ui-tls
+  # IMPORTANT: Replace with the namespace where your KubeSlice UI is running
+  namespace: kubeslice-ui
+spec:
+  # The name of the Kubernetes Secret to store the certificate and key
+  secretName: kubeslice-ui-tls-secret-v2
+
+  # The hostname for your UI
+  dnsNames:
+  - ui.kubeslice.trg
+
+  # Reference to the internal Certificate Authority
+  issuerRef:
+    name: kommander-ca
+    kind: ClusterIssuer
+    group: cert-manager.io
