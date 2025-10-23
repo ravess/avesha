@@ -5,6 +5,7 @@ metadata:
   namespace: kubeslice-ui
 spec:
   interval: 1m
+  timeout: 5m0s 
   chart: 
     spec:
       chart: kubeslice-ui-egs

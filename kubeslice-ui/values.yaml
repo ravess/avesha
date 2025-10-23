@@ -152,7 +152,10 @@ kubeslice:
       extraLabels: {}
 
       ## Annotations to add onto the Ingress object
-      annotations: {}
+      annotations: 
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/service.serversscheme: https
 
       ## (Optional) Override the service port to route to
       # servicePort: 8081
@@ -177,7 +180,7 @@ kubeslice:
       tls: 
         - hosts:
             - ui.kubeslice.trg
-          secretName: ui-proxy-tls-secret
+          secretName: kubeslice-ui-tls-secret-v2
     
     containerSecurityContext: 
       runAsUser: 65536
