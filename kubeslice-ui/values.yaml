@@ -129,24 +129,24 @@ kubeslice:
       ## For kind, set this to NodePort, elsewhere use LoadBalancer or NodePort
       ## Ref: https://kubernetes.io/docs/user-guide/services/#publishing-services---service-types
       ##
-      type: NodePort
+      type: ClusterIP
       ## if type selected to NodePort then set nodePort value if required
-      nodePort: 30001
-      # port: 443
-      # targetPort: 8443
+      # nodePort: 30031
+      port: 443
+      targetPort: 8443
     labels:
       app: kubeslice-ui-proxy
     annotations: {}
 
     ingress:
       ## If true, ui‑proxy Ingress will be created
-      enabled: false
+      enabled: true
 
       ## Port on the Service to route to
       servicePort: 443
 
       ## Ingress class name (e.g. "nginx"), if you’re using a custom ingress controller
-      className: ""
+      className: kommander-traefik
 
       ## Extra labels to add onto the Ingress object
       extraLabels: {}
@@ -161,7 +161,7 @@ kubeslice:
       ## UI‑Proxy Ingress hostnames with paths
       ## Must be provided if Ingress is enabled
       hosts:
-        - host: ui.kubeslice.com     # ← replace with your FQDN
+        - host: ui.kubeslice.trg    # ← replace with your FQDN
           paths:
             - path: /             # ← base path
               pathType: Prefix    # ← Prefix | Exact
@@ -174,10 +174,10 @@ kubeslice:
       #     servicePort: use-annotation
 
       ## TLS configuration (you must create these Secrets ahead of time)
-      tls: []
-        # - hosts:
-        #     - ui.kubeslice.com
-        #   secretName: uitlssecret
+      tls: 
+        - hosts:
+            - ui.kubeslice.trg
+          secretName: ui-proxy-tls-secret
     
     containerSecurityContext: 
       runAsUser: 65536
