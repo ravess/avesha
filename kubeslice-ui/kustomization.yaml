@@ -9,6 +9,7 @@ resources:
   - helm_release.yaml
   - license.yaml
   - nexus-registry-secret.yaml
+  - ui-proxy-tls-secret.yaml
 configMapGenerator:
   - name: kubeslice-ui-values
     files:
