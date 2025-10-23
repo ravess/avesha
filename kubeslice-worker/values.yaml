@@ -1,4 +1,3 @@
-
 global:
   imageRegistry: 172.16.109.168:8082/egs
   profile:
@@ -62,18 +61,18 @@ operator:
   - "kube-public"
   - "istio-system"
 
-controllerSecretName: kubeslice-hub #default name used if not specify any name
+controllerSecretName: kubeslice-controller-secret #default name used if not specify any name
 ## Base64 encoded secret values from controller cluster
 controllerSecret:
-  namespace:
-  endpoint:
-  ca.crt:
-  token:
+  namespace: ""
+  endpoint: ""
+  ca.crt: ""
+  token: ""
 
 cluster:
-  name:
+  name: trg-nkp-wkl-001
   nodeIp: # This field is deprecated. You can set nodeIPs through cluster spec.
-  endpoint:
+  endpoint: https://172.16.102.20/dkp/api-server:6443
 
 router:
   image: cmd-nse-vl3
@@ -124,17 +123,17 @@ dns:
   labels:
     app: kubeslice-dns
   annotations: {}
-  containerSecurityContext: {}
-    # runAsUser: 65536
-    # runAsGroup: 65536
-    # runAsNonRoot: true
-    # seccompProfile:
-    #   type: RuntimeDefault
-    # allowPrivilegeEscalation: false
-    # capabilities:
-    #   drop:
-    #     - ALL
-    # readOnlyRootFilesystem: true
+  containerSecurityContext: 
+    runAsUser: 65536
+    runAsGroup: 65536
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
   podSecurityContext: {}
     # runAsUser: 65536               # Non-root user
     # runAsGroup: 65536              # Non-root group
@@ -233,8 +232,8 @@ egsAgent:
   logLevel: INFO
   secretName: egs-agent-access
   agentSecret:
-    endpoint: ""
-    key: ""
+    endpoint: https://ui.kubeslice.trg
+    key: eyJhbGciOiJSUzI1NiIsImtpZCI6InVPUW80bmx4WmxxWncwZGEwcXJibWZIdUo0WFhTU1k3eTVNYS1ubERCdk0ifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlc2xpY2UtYXZlc2hhIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6Imt1YmVzbGljZS1yYmFjLXJ3LWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6Imt1YmVzbGljZS1yYmFjLXJ3LWFkbWluIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYjE1NjExZTgtZTBjNS00MTlkLTlhZGYtMTQzOWIxZTVhYWFlIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50Omt1YmVzbGljZS1hdmVzaGE6a3ViZXNsaWNlLXJiYWMtcnctYWRtaW4ifQ.ZztxSIYliY7hpy_eYz9nPIiFzX4w7Moldce6sl3NAKtJJBnuA_Y00nzi5x5FvOvRqMUfu1fxpnhUTA3LnPAefR7smWl4R__8ZzzuDH8HvAYQBmJzwlOVJcMsoF4WjTUlzy-qY8_PzNyuLGBOHnuc1YuowrwiNamoqkPnJb3veRibwTfFau5vOf7rPuR3LqIl_NLR_Li_EJKEDJkNB8_NCeKQqINpDHdGcgMCy45IcJWOwSjH3OcoSrgtVThXUEe7QnQwLRN7jLDbvq3eWXVPZFEU143FqlsvE3uC6CBjyeLOmL_5gCQHMGZgQbiTBigPa3wuLFdKD2e2g5_R0MQHmQ
   labels:
     control-plane: egs-agent
   annotations: {}
@@ -275,7 +274,7 @@ egsAgent:
 
 egs:
   prometheusEndpoint: ""
-  grafanaDashboardBaseUrl: ""
+  grafanaDashboardBaseUrl: http://<grafana-lb>/d/Oxed_c6Wz
 
 workerInstaller:
   image: worker-installer
@@ -288,12 +287,12 @@ events:
   disabled: false
 
 kserve:
-  enabled: true
+  enabled: false
   # KServe chart options
   kserve:
     controller:
       gateway:
-        domain: kubeslice.com
+        domain: ""
         ingressGateway:
           className: "nginx"
 
@@ -347,3 +346,4 @@ nsm:
       priorityClassName: ""
     spiffe-csi-driver:
       priorityClassName: ""
+
