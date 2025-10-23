@@ -1,5 +1,5 @@
 global:
-  imageRegistry: 172.16.109.168:8082/egs
+  imageRegistry: harbor.saas1.smart-scaler.io/avesha/aveshasystems
   profile:
     openshift: false
 
@@ -61,18 +61,18 @@ operator:
   - "kube-public"
   - "istio-system"
 
-controllerSecretName: "kubeslice-controller-secret" #default name used if not specify any name
+controllerSecretName: kubeslice-hub #default name used if not specify any name
 ## Base64 encoded secret values from controller cluster
-# controllerSecret: 
-#   namespace:
-#   endpoint:
-#   ca.crt:
-#   token: 
+controllerSecret:
+  namespace:
+  endpoint:
+  ca.crt:
+  token:
 
 cluster:
-  name: trg-nkp-wkl-001
+  name:
   nodeIp: # This field is deprecated. You can set nodeIPs through cluster spec.
-  endpoint: https://172.16.102.20/dkp/api-server:6443
+  endpoint:
 
 router:
   image: cmd-nse-vl3
@@ -287,7 +287,7 @@ events:
   disabled: false
 
 kserve:
-  enabled: false
+  enabled: true
   # KServe chart options
   kserve:
     controller:
@@ -324,14 +324,14 @@ alpine:
   # Image tag for the alpine
   tag: 1.0.1
 
-imagePullSecretsName: "nexus-registry-secret"
+imagePullSecretsName: "kubeslice-image-pull-secret"
 # leave the below fields empty if secrets are managed externally.
-imagePullSecrets: {}
-  # repository: https://index.docker.io/v1/ ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
-  # username:
-  # password:
-  # email:
-  # dockerconfigjson: ## Value to be used if using external secret managers
+imagePullSecrets:
+  repository: https://index.docker.io/v1/ ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
+  username:
+  password:
+  email:
+  dockerconfigjson: ## Value to be used if using external secret managers
 
 controllerNamespace: kubeslice-controller
 
