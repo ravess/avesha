@@ -8,7 +8,7 @@ resources:
   # - helm_repo.yaml
   # - helm_release.yaml
   # - kubeslice-controller-secret-actual.yaml
-  - nexus-registry-secret.yaml
+  # - nexus-registry-secret.yaml
 configMapGenerator:
   - name: kubeslice-worker-values
     files:
