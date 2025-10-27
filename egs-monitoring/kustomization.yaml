@@ -12,6 +12,6 @@ resources:
 configMapGenerator:
   - name: kube-prometheus-stack-values
     files:
-      - gpu-monitoring-values.yaml
+      - values.yaml
 configurations:
   - kustomizeconfig.yaml
