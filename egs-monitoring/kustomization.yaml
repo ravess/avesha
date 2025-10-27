@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+commonLabels:
+  env: trg
+  app: kubeslice
+resources:
+  - helm_repo.yaml
+  - helm_release.yaml
+  - pod-monitor.yaml
+  - service-monitor.yaml
+  - nexus-registry-secret.yaml
+configMapGenerator:
+  - name: kube-prometheus-stack-values
+    files:
+      - gpu-monitoring-values.yaml
+configurations:
+  - kustomizeconfig.yaml

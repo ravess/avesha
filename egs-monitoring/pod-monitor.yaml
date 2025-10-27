@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: kubeslice-controller-manager-pod-monitor
+  namespace: egs-monitoring  # NAMESPACE: Change this to your monitoring namespace
+  labels:
+    app.kubernetes.io/instance: kube-prometheus-stack  # PROMETHEUS_INSTANCE: Change to your Prometheus instance
+    release: prometheus  # PROMETHEUS_RELEASE: Change to your Prometheus release name
+spec:
+  selector:
+    matchLabels:
+      control-plane: controller-manager  # Matches the pod labels
+  namespaceSelector:
+    matchNames:
+      - kubeslice-controller  # KUBESLICE_CONTROLLER_NAMESPACE: Namespace where controller is deployed
+  podMetricsEndpoints:
+    - interval: 30s  # SCRAPE_INTERVAL: How often to collect metrics (30s, 15s, 60s, etc.)
+      port: "18080"  # PORT: Direct port number as string (matches prometheus.io/port annotation)
+      path: /metrics  # METRICS_PATH: Path where metrics are exposed (default: /metrics)
+      scrapeTimeout: 10s  # SCRAPE_TIMEOUT: Maximum time to wait for metrics response
+      scheme: http  # SCHEME: Use http for direct pod access
