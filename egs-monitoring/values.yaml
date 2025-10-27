@@ -1,4 +1,22 @@
 # gpu-monitoring-values.yaml
+crds:
+  upgradeJob:
+    image:
+      kubectl:
+          egistry: 172.16.109.168:8082/egs
+prometheusOperator:
+  admissionsWebHooks:
+    patch:
+      image:
+          egistry: 172.16.109.168:8082/egs
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
 inline_values:
   global:
     imageRegistry: "172.16.109.168:8082/egs"
@@ -36,23 +54,6 @@ inline_values:
         - source_labels: [__meta_kubernetes_pod_node_name]
           action: replace
           target_label: kubernetes_node
-  crds:
-    upgradeJob:
-      image:
-        kubectl:
-          registry: 172.16.109.168:8082/egs
-  prometheusOperator:
-    admissionsWebHooks:
-      patch:
-        image:
-          registry: 172.16.109.168:8082/egs
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        cpu: 200m
-        memory: 256Mi
   grafana:
     enabled: true                         # Enable Grafana
     grafana.ini:
