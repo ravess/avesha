@@ -14,6 +14,7 @@ prometheus-node-exporter:
 prometheusOperator:
   prometheusConfigReloader:
     image:
+      registry: "172.16.109.168:8082/egs"
       repository: prometheus-operator/prometheus-config-reloader
       # if not set appVersion field from 
       tag: "v0.80.0"
