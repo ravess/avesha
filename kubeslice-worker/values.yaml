@@ -324,14 +324,14 @@ alpine:
   # Image tag for the alpine
   tag: 1.0.1
 
-imagePullSecretsName: "nexus-registry-secret"
+imagePullSecretsName: "kubeslice-image-pull-secret"
 # leave the below fields empty if secrets are managed externally.
-imagePullSecrets: {}
-  # repository: https://index.docker.io/v1/ ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
-  # username:
-  # password:
-  # email:
-  # dockerconfigjson: ## Value to be used if using external secret managers
+imagePullSecrets: 
+  repository: "http://172.16.109.168:8082/egs" ## Value to be used incase using the docker hub images-  https://index.docker.io/v1/
+  username: "admin"
+  password: "P@ssw0rd123456"
+  email: "admin@example.org"
+  dockerconfigjson: "" ## Value to be used if using external secret managers
 
 controllerNamespace: kubeslice-controller
 
