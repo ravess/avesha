@@ -19,6 +19,34 @@ prometheusOperator:
       # if not set appVersion field from 
       tag: "v0.80.0"
 
+
+prometheus:
+  prometheusSpec:
+    livenessProbe:
+      initialDelaySeconds: 120  # Wait 2 minutes before the first check
+      timeoutSeconds: 10        # Give the probe 10 seconds to respond
+      periodSeconds: 15         # Check every 15 seconds
+      failureThreshold: 10      # Allow 10 failures before restarting
+    readinessProbe:
+      initialDelaySeconds: 120  # Wait 2 minutes before marking as ready
+      timeoutSeconds: 10        # Give the probe 10 seconds to respond
+      periodSeconds: 15         # Check every 15 seconds
+      failureThreshold: 10      # Allow 10 failures before marking as unready
+
+# Configuration for the Alertmanager pods
+alertmanager:
+  alertmanagerSpec:
+    livenessProbe:
+      initialDelaySeconds: 120  # Wait 2 minutes before the first check
+      timeoutSeconds: 10        # Give the probe 10 seconds to respond
+      periodSeconds: 15         # Check every 15 seconds
+      failureThreshold: 10      # Allow 10 failures before restarting
+    readinessProbe:
+      initialDelaySeconds: 120  # Wait 2 minutes before marking as ready
+      timeoutSeconds: 10        # Give the probe 10 seconds to respond
+      periodSeconds: 15         # Check every 15 seconds
+      failureThreshold: 10      # Allow 10 failures before marking as unready
+
 inline_values:
   prometheus:
     service:
