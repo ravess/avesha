@@ -1,0 +1,73 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # This is the standard name for the role your worker needs.
+  name: kubeslice-worker-cluster-role
+rules:
+- apiGroups:
+  - controller.kubeslice.io
+  resources:
+  - clusters
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - worker.kubeslice.io
+  resources: ["*"]
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - worker.kubeslice.io
+  resources: ["*/status"]
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - controller.kubeslice.io
+  resources:
+  - vpnkeyrotations
+  - vpnkeyrotations/status
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  # Give the binding a unique, descriptive name.
+  name: kubeslice-worker-trg-nkp-wkl-001-binding
+roleRef:
+  # This points to the ClusterRole we created in Step 1.
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubeslice-worker-cluster-role
+subjects:
+- kind: ServiceAccount
+  # This is the "User" from your error message.
+  name: kubeslice-rbac-worker-trg-nkp-wkl-001
+  namespace: kubeslice-avesha
