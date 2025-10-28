@@ -14,7 +14,7 @@ prometheus-node-exporter:
 inline_values:
   prometheus:
     service:
-      type: ClusterIP                     # Service type for Prometheus
+      type: ClusterIP                     # Service type for Prometheuss
     prometheusSpec:
       podMonitorSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
