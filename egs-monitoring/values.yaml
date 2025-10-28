@@ -7,7 +7,7 @@ global:
 inline_values:
   prometheus:
     service:
-      type: ClusterIP                     # Service type for Prometheuss
+      type: ClusterIP                     # Service type for Prometheus
     prometheusSpec:
       podMonitorSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
