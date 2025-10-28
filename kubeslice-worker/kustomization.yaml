@@ -7,8 +7,8 @@ resources:
   # - kubeslice-worker-namespace.yaml
   - helm_repo.yaml
   - helm_release.yaml
-  # - kubeslice-controller-secret-actual.yaml
-  - additional-cluster-role-and-binding-for-kubeslice-operator.yaml
+  - additional-kubeslice-hub-for-aiops-operator #For some reason hub-secret not created
+  - additional-cluster-role-and-binding-for-kubeslice-operator.yaml #For some reason rbac for kubeslice-rbac-worker not created
   - nexus-registry-secret.yaml
 configMapGenerator:
   - name: kubeslice-worker-values
