@@ -1,27 +1,10 @@
 # gpu-monitoring-values.yaml
-crds:
-  upgradeJob:
-    image:
-      kubectl:
-          egistry: 172.16.109.168:8082/egs
-prometheusOperator:
-  admissionsWebHooks:
-    patch:
-      image:
-          egistry: 172.16.109.168:8082/egs
-  resources:
-    requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
-      cpu: 200m
-      memory: 256Mi
+global:
+  imageRegistry: "172.16.109.168:8082/egs"
+  imagePullSecrets:
+  - nexus-registry-secret
 
 inline_values:
-  global:
-    imageRegistry: "172.16.109.168:8082/egs"
-    imagePullSecrets:
-    - nexus-registry-secret
   prometheus:
     service:
       type: ClusterIP                     # Service type for Prometheus
