@@ -3,6 +3,13 @@ global:
   imageRegistry: "172.16.109.168:8082/egs"
   imagePullSecrets:
   - nexus-registry-secret
+prometheus-node-exporter:
+  service:
+    # This changes the port the container listens on
+    port: 19100
+    # This changes the port mapped on the node's network interface
+    hostPort: 19100
+    targetPort: 19100
 
 inline_values:
   prometheus:
