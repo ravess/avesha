@@ -5,9 +5,9 @@ commonLabels:
   app: kubeslice
 resources:
   # - kubeslice-ui-namespace.yaml
-  - helm_repo.yaml
-  - helm_release.yaml
-  - certificate.yaml
+  # - helm_repo.yaml
+  # - helm_release.yaml
+  # - certificate.yaml
 configMapGenerator:
   - name: kubeslice-ui-values
     files:
