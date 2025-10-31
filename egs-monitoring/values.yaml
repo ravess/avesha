@@ -44,6 +44,14 @@ prometheus:
 # Configuration for the Alertmanager pods
 alertmanager:
   alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: nutanix-volume # Use the StorageClass from your cluster
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi # Adjust size if needed
     livenessProbe:
       initialDelaySeconds: 120  # Wait 2 minutes before the first check
       timeoutSeconds: 10        # Give the probe 10 seconds to respond
