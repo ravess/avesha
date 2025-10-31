@@ -273,8 +273,8 @@ egsAgent:
                     operator: "DoesNotExist"
 
 egs:
-  prometheusEndpoint: "http://prometheus-kube-prometheus-prometheus.egs-monitoring.svc:9090"
-  grafanaDashboardBaseUrl: "http://prometheus-grafana.egs-monitoring.svc:80/d/Oxed_c6Wz"
+  prometheusEndpoint: "http://kube-prometheus-stack-prometheus.wkl-001-2kzzm-lsd27.svc:9090"
+  grafanaDashboardBaseUrl: "http://kube-prometheus-stack-grafana.wkl-001-2kzzm-lsd27.svc:3000/d/Oxed_c6Wz"
 
 workerInstaller:
   image: worker-installer
