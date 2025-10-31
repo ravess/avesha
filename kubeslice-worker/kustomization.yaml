@@ -10,6 +10,7 @@ resources:
   - additional-kubeslice-hub-for-aiops-operator.yaml #For some reason hub-secret not created
   - additional-cluster-role-and-binding-for-kubeslice-operator.yaml #For some reason rbac for kubeslice-rbac-worker not created
   - nexus-registry-secret.yaml
+  - additional-for-aioperator-rolebinding.yaml
 configMapGenerator:
   - name: kubeslice-worker-values
     files:
