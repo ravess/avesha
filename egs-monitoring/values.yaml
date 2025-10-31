@@ -22,6 +22,14 @@ prometheusOperator:
 
 prometheus:
   prometheusSpec:
+    storageSpec: 
+        volumeClaimTemplate:
+          spec:  
+            storageClassName: nutanix-volume # <-- REPLACE THIS
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 50Gi # Placeholder for storage configuration
     livenessProbe:
       initialDelaySeconds: 120  # Wait 2 minutes before the first check
       timeoutSeconds: 10        # Give the probe 10 seconds to respond
@@ -54,7 +62,6 @@ inline_values:
     prometheusSpec:
       podMonitorSelectorNilUsesHelmValues: false
       serviceMonitorSelectorNilUsesHelmValues: false
-      storageSpec: {}                     # Placeholder for storage configuration
       additionalScrapeConfigs:
       - job_name: tgi
         kubernetes_sd_configs:
